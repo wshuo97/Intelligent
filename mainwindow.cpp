@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->videoWin->hide();
 
     socket = new QTcpSocket(this);
-    socket->connectToHost(QHostAddress("115.159.199.129"), 6666);
+    socket->connectToHost(QHostAddress("192.168.1.1"), 6666);
 
     connect(this->serial_control, SIGNAL(receiveMsgFromSerial(QByteArray)), this, SLOT(handleMSG(QByteArray)));
     connect(this, SIGNAL(goMsg(QString)), this, SLOT(upMsg(QString)));
