@@ -425,19 +425,6 @@
      <string>On/Off         :</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_5">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>320</y>
-      <width>91</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>UploadData:</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
@@ -542,7 +529,6 @@
    <zorder>upLoad</zorder>
    <zorder>vMonitor</zorder>
    <zorder>label_4</zorder>
-   <zorder>label_5</zorder>
    <zorder>label_6</zorder>
    <zorder>label_7</zorder>
    <zorder>screenShot</zorder>

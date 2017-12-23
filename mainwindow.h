@@ -7,6 +7,8 @@
 #include <QMutex>
 #include <QTimer>
 #include <QFile>
+#include <QThread>
+#include <QString>
 
 #include "posix_qextserialport.h"
 #include "temp_humi_ligh.h"
@@ -19,6 +21,7 @@
 #include "pwm.h"
 #include "pir.h"
 #include "smoke.h"
+#include "mythread.h"
 
 #define LOCK     mutex_im->lock();
 #define UNLOCK   mutex_im->lock();
@@ -102,8 +105,12 @@ private slots:
 
     void setPwm(int);
 
+    void toControl(QString);
+
 signals :
     void goMsg(QString);
+
+    void genMsg(QString);
 
 private:
     Ui::MainWindow *ui;
@@ -117,6 +124,7 @@ private :
     Temp_Humi_Ligh *tempB;
     QMutex *mutex_im;
     Video *video;
+    Mythread *thread;
     //QFile file;
 
     QTimer *timer1;

@@ -34,7 +34,10 @@ MainWindow::MainWindow(QWidget *parent) :
     //ui->videoWin->hide();
 
     socket = new QTcpSocket(this);
-    socket->connectToHost(QHostAddress("192.168.1.1"), 6789);
+    socket->connectToHost(QHostAddress("115.159.184.121"), 8888);
+
+    thread=new Mythread(socket);
+    connect(thread, SIGNAL(sendMsg(QString)),this,SLOT(toControl(QString)));
 
     connect(this->serial_control, SIGNAL(receiveMsgFromSerial(QByteArray)), this, SLOT(handleMSG(QByteArray)));
     connect(this, SIGNAL(goMsg(QString)), this, SLOT(upMsg(QString)));
@@ -49,6 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(this->timer6, SIGNAL(timeout()), this, SLOT(disConnected6()));
     connect(this->timer7, SIGNAL(timeout()), this, SLOT(disConnected7()));
 
+    //thread->start();
 
     //serial_control->openCom();
 }
@@ -276,6 +280,8 @@ void MainWindow::changeMotor(int ID, int status)
 void MainWindow::upMsg(QString mesg)
 {
     ui->msgInfo->append(mesg);
+    //if(UPLoad != OPEN)
+        //ui->msgInfo->append("tttttttttttttttttttttttttttt\n");
     if(UPLoad == OPEN)
     {
         QString str = mesg + "\r\n";
@@ -292,10 +298,13 @@ void MainWindow::openSerial()
     {
         ui->open_Serial->setText("OFF");
         ui->open_Serial->setStyleSheet(PINK);
+        thread->start();
         emit goMsg("Open serial success!");
     }
     else
+    {
         emit goMsg("Open serial fail!");
+    }
 }
 
 void MainWindow::closeSerial()
@@ -383,7 +392,6 @@ void MainWindow::initUI()
     ui->Pir_but->setStyleSheet(WHITE);
     ui->Smoke_but->setStyleSheet(WHITE);
     ui->upLoad->hide();
-    ui->label_5->hide();
     ui->screenShot->setStyleSheet(WHITE);
     ui->vMonitor->setStyleSheet(WHITE);
     ui->upLoad->setStyleSheet(WHITE);
@@ -444,7 +452,7 @@ void MainWindow::startUpload()
     UPLoad = OPEN;
     ui->upLoad->setText("OFF");
     ui->upLoad->setStyleSheet(PINK);
-    socket->connectToHost(QHostAddress("115.159.199.129"), 6666);
+    //socket->connectToHost(QHostAddress("115.159.199.129"), 6666);
     emit goMsg("Connect server!");
 }
 
@@ -454,7 +462,7 @@ void MainWindow::closeUpload()
 
     ui->upLoad->setText("ON");
     ui->upLoad->setStyleSheet(WHITE);
-    socket->close();
+    //socket->close();
     emit goMsg("Disconnetc server!");
 //    socket->disconnect()
 }
@@ -599,4 +607,16 @@ void MainWindow::setUpload()
         UPLoad = CLOSE;
     else
         UPLoad = OPEN;
+}
+
+void MainWindow::toControl(QString command)
+{
+    QString str=command.toLower().toAscii();
+    if(str.contains(""))
+    {
+    }
+    else
+    {
+    }
+    //todo ......
 }

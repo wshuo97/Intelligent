@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     video.cpp \
     pwm.cpp \
     smoke.cpp \
-    pir.cpp
+    pir.cpp \
+    mythread.cpp
 
 HEADERS  += mainwindow.h \
     serialservice.h \
@@ -37,7 +38,8 @@ HEADERS  += mainwindow.h \
     constant.h \
     pwm.h \
     smoke.h \
-    pir.h
+    pir.h \
+    mythread.h
 
 FORMS    += mainwindow.ui \
             video.ui
