@@ -11,3 +11,5 @@ socket的本地上传<br>
 调试过程中使用移植到 TQ210-linux开发板 的ssh服务进行调试<br>
 <br>
 代码可以作为摄像头模块调用的demo来学习<br>
+<br>
+最近添加了多线程功能（mythread.h & mythread.cpp）来实现socket的收发信息，其中包括socket的使用demo
